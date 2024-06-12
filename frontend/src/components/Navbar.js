@@ -35,14 +35,14 @@ export default function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/" style={{ color: "green" }}>
-              Features
+            <Link className="nav-link" to="/login" style={{ color: "green" }}>
+            Login
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/" style={{ color: "green" }}>
-              Predict
-            </Link>
+          <Link to="/predict" className="nav-link" style={{ color: "green" }}>
+          Predict 
+        </Link>
           </li>
           <li className="nav-item dropdown">
             <a
@@ -72,9 +72,7 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
-        <Link to="/predict" className="btn btn-success ml-auto">
-          Predict your disease
-        </Link>
+        
       </div>
     </nav>
   );
