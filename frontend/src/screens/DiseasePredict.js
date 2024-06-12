@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SelectDiseases from "../components/SelectDiseases";
+import Diabetes from "./Diabetes";
 
 function DiseasePredict() {
   const [selectedOptions, setSelectedOptions] = useState();
