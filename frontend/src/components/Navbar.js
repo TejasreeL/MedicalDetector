@@ -36,13 +36,13 @@ export default function Navbar() {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="/login" style={{ color: "green" }}>
-            Login
+              Login
             </Link>
           </li>
           <li className="nav-item">
-          <Link to="/predict" className="nav-link" style={{ color: "green" }}>
-          Predict 
-        </Link>
+            <Link to="/predict" className="nav-link" style={{ color: "green" }}>
+              Predict
+            </Link>
           </li>
           <li className="nav-item dropdown">
             <a
@@ -72,13 +72,15 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
-        <Link to="/predict" className="btn btn-success ml-auto">
-          Predict your disease
-        </Link>
         <Link to="/diabetes" className="btn btn-success ml-auto">
           Diabetes
         </Link>
-        
+        <Link to="/heart" className="btn btn-success ml-auto">
+          Heart
+        </Link>
+        <Link to="/parkinsons" className="btn btn-success ml-auto">
+          Parkinsons
+        </Link>
       </div>
     </nav>
   );

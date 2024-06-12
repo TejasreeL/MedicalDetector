@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the pre-trained ML model
-model = joblib.load('multiple_diseases.sav')
+diseases_model = joblib.load('./multiplediseases/multiple_diseases.sav')
 
 # List of all possible symptoms
 all_symptoms = [
@@ -54,12 +54,94 @@ def receive_data():
     symptoms_vector = np.array(symptoms_vector).reshape(1, -1)
     
     # Predict the disease using the ML model
-    prediction = model.predict(symptoms_vector)
+    prediction = diseases_model.predict(symptoms_vector)
     predicted_disease = prediction[0]
     print(f"Predicted disease: {predicted_disease}")
     
     response = {"status": "success", "predicted_disease": predicted_disease.tolist()}
     return jsonify(response)
+
+diabetes_model = joblib.load('./SepModels/diabetes_model.sav')
+
+# List of features for diabetes prediction
+features_diabetes = [
+    'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 
+    'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age'
+]
+
+@app.route('/predict_diabetes', methods=['POST'])
+def predict_diabetes():
+    data = request.get_json()
+    
+    # Extract feature values in the order expected by the model
+    feature_values = [data.get(feature, 0) for feature in features_diabetes]
+    print(f"Received features: {feature_values}")
+
+    # Convert the feature values to a numpy array
+    input_vector = np.array(feature_values).reshape(1, -1)
+    
+    # Predict the probability of diabetes
+    prediction = diabetes_model.predict(input_vector)
+    predicted_diabetes = int(prediction[0])  # Convert int64 to int
+    print(f"Predicted diabetes: {predicted_diabetes}")
+    
+    response = {"status": "success", "predicted_diabetes": predicted_diabetes}
+    return jsonify(response)
+
+model = joblib.load('./SepModels/heartDisease_model.sav')
+
+@app.route('/predict_heart_disease', methods=['POST'])
+def predict_heart_disease():
+    data = request.get_json()
+    features = np.array([[
+        data['age'],
+        data['sex'],
+        data['cp'],
+        data['trestbps'],
+        data['chol'],
+        data['fbs'],
+        data['restecg'],
+        data['thalach'],
+        data['exang'],
+        data['oldpeak'],
+        data['slope'],
+        data['ca'],
+        data['thal']
+    ]])
+    prediction = model.predict(features)
+    return jsonify({'predicted_heart_disease': int(prediction[0])})
+
+parkinsons = joblib.load('./SepModels/parkinsons_model.sav')
+
+@app.route('/predict_parkinsons', methods=['POST'])
+def predict_parkinsons():
+    data = request.get_json()
+    features = np.array([[
+        data['MDVP:Fo(Hz)'],
+        data['MDVP:Fhi(Hz)'],
+        data['MDVP:Flo(Hz)'],
+        data['MDVP:Jitter(%)'],
+        data['MDVP:Jitter(Abs)'],
+        data['MDVP:RAP'],
+        data['MDVP:PPQ'],
+        data['Jitter:DDP'],
+        data['MDVP:Shimmer'],
+        data['MDVP:Shimmer(dB)'],
+        data['Shimmer:APQ3'],
+        data['Shimmer:APQ5'],
+        data['MDVP:APQ'],
+        data['Shimmer:DDA'],
+        data['NHR'],
+        data['HNR'],
+        data['RPDE'],
+        data['DFA'],
+        data['spread1'],
+        data['spread2'],
+        data['D2'],
+        data['PPE']
+    ]])
+    prediction = parkinsons.predict(features)
+    return jsonify({'predicted_parkinsons': int(prediction[0])})
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000)

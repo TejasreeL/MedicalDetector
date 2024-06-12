@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import "./sep.css";
 
 function Diabetes() {
   const [formData, setFormData] = useState({
@@ -35,16 +36,17 @@ function Diabetes() {
   };
 
   return (
-    <div>
+    <div className="mx-auto text-center">
       <h1>Diabetes Prediction</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="diabetes-form">
         {Object.keys(formData).map(
           (key) =>
             key !== "SkinThickness" && ( // Exclude SkinThickness from inputs
-              <div key={key}>
-                <label>
+              <div key={key} className="form-group">
+                <label className="form-label">
                   {key}:
                   <input
+                    className="form-input"
                     type="number"
                     name={key}
                     value={formData[key]}
@@ -55,7 +57,9 @@ function Diabetes() {
               </div>
             )
         )}
-        <button type="submit">Predict</button>
+        <button type="submit" className="submit-button">
+          Predict
+        </button>
       </form>
       {prediction !== null && (
         <div>
