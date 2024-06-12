@@ -1,11 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Select from "react-select";
 
-export default function App() {
-  // React state to manage selected options
-  const [selectedOptions, setSelectedOptions] = useState();
-
-  // Array of all options
+export default function SelectDiseases(props) {
   const optionList = [
     { value: "itching", label: "Itching" },
     { value: "skin_rash", label: "Skin Rash" },
@@ -156,11 +152,6 @@ export default function App() {
     { value: "yellow_crust_ooze", label: "Yellow Crust Ooze" },
   ];
 
-  // Function triggered on selection
-  function handleSelect(data) {
-    setSelectedOptions(data);
-    console.log(data);
-  }
   return (
     <div className="app">
       <h2>Select your sympotms</h2>
@@ -168,8 +159,8 @@ export default function App() {
         <Select
           options={optionList}
           placeholder="Select symptoms"
-          value={selectedOptions}
-          onChange={handleSelect}
+          value={props.selectedOptions}
+          onChange={props.func}
           isSearchable={true}
           isMulti
         />
