@@ -72,6 +72,12 @@ export default function Navbar() {
             </div>
           </li>
         </ul>
+        <Link to="/predict" className="btn btn-success ml-auto">
+          Predict your disease
+        </Link>
+        <Link to="/diabetes" className="btn btn-success ml-auto">
+          Diabetes
+        </Link>
         
       </div>
     </nav>
