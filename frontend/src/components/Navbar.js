@@ -18,10 +18,10 @@ export default function Navbar() {
             <Link className="nav-link" to="/" style={{ color: 'green' }}>Home</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/" style={{ color: 'green' }}>Features</Link>
+            <Link className="nav-link" to="/login" style={{ color: 'green' }}>Login</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/" style={{ color: 'green' }}>Predict</Link>
+            <Link className="nav-link" to="/" style={{ color: 'green' }}></Link>
           </li>
           <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style={{ color: 'green' }}>
