@@ -61,15 +61,12 @@ function Diabetes() {
           Predict
         </button>
       </form>
-      {prediction !== null && (
-        <div>
-          <p>
-            {prediction === 1
-              ? "Positive for Diabetes"
-              : "Negative for Diabetes"}
-          </p>
-        </div>
-      )}
+
+      <div>
+        <p>
+          {prediction == 1 ? "Positive for Diabetes" : "Negative for Diabetes"}
+        </p>
+      </div>
     </div>
   );
 }
